@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Earthdawn Effect Tracker</string>
+    <string name="action_reset">Reset</string>
+    <string name="action_add_effect">Add Effect</string>
+    <string name="action_finish_round">Finish Round</string>
+    <string name="aggregated_totals_header">Totals</string>
+    <string name="active_effects_header">Active Effects</string>
+    <string name="current_round_fmt">Round %1$d</string>
+    <string name="no_active_effects">No active effects. Tap \'\+\' to add an effect.</string>
+    <string name="no_aggregated_totals">No totals to display.</string>
+    <string name="dialog_add_effect_title">Add New Effect</string>
+    <string name="target_label">Affected Attribute / Stat</string>
+    <string name="target_hint">Select stat or type custom text</string>
+    <string name="amount_label">Amount (+ / -)</string>
+    <string name="amount_hint">e.g. 2 or -3</string>
+    <string name="rounds_label">Rounds Duration</string>
+    <string name="rounds_hint">e.g. 3</string>
+    <string name="button_add">Add</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="reset_confirm_title">Reset All Effects?</string>
+    <string name="reset_confirm_msg">This will delete all active effects and reset the round counter to 1.</string>
+    <string name="reset_confirm_yes">Reset</string>
+    <string name="reset_confirm_no">Cancel</string>
+    <string name="rounds_fmt">%1$d rounds remaining</string>
+    <string name="round_fmt_single">1 round remaining</string>
+    <string name="effects_expired_msg">%1$d effect(s) expired!</string>
+    <string name="no_effects_expired_msg">Advanced to next round. No effects expired.</string>
+    <string name="invalid_input_error">Please enter a valid target, non-zero amount, and at least 1 round.</string>
+    <string name="delete_effect">Delete effect</string>
+
+    <plurals name="effects_active_count">
+        <item quantity="one">%1$d effect active</item>
+        <item quantity="other">%1$d effects active</item>
+    </plurals>
+
+    <plurals name="rounds_remaining_count">
+        <item quantity="one">1 round remaining</item>
+        <item quantity="other">%1$d rounds remaining</item>
+    </plurals>
+</resources>
