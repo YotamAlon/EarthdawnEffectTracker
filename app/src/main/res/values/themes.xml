@@ -1,8 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme (Light - Barsaivian Tome). -->
     <style name="Base.Theme.EarthdawnEffectTracker" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/ed_barsaivian_crimson</item>
+        <item name="colorOnPrimary">@color/ed_light_linen</item>
+        <item name="colorPrimaryContainer">@color/ed_crimson_container_light</item>
+        <item name="colorOnPrimaryContainer">@color/ed_deep_garnet</item>
+
+        <item name="colorSecondary">@color/ed_burnished_bronze</item>
+        <item name="colorOnSecondary">@color/ed_light_linen</item>
+        <item name="colorSecondaryContainer">@color/ed_bronze_container_light</item>
+        <item name="colorOnSecondaryContainer">@color/ed_deep_charcoal_ink</item>
+
+        <item name="colorTertiary">@color/ed_karma_light</item>
+
+        <item name="android:colorBackground">@color/ed_aged_parchment</item>
+        <item name="colorOnBackground">@color/ed_deep_charcoal_ink</item>
+        <item name="colorSurface">@color/ed_aged_parchment</item>
+        <item name="colorOnSurface">@color/ed_deep_charcoal_ink</item>
+        <item name="colorSurfaceVariant">@color/ed_warm_vellum</item>
+        <item name="colorOnSurfaceVariant">@color/ed_weathered_umber</item>
+        <item name="colorOutline">@color/ed_weathered_stone</item>
+        <item name="colorOutlineVariant">@color/ed_sanded_stone</item>
+        <item name="colorError">@color/ed_wound_light</item>
     </style>
 
     <style name="Theme.EarthdawnEffectTracker" parent="Base.Theme.EarthdawnEffectTracker" />

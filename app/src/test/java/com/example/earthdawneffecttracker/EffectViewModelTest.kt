@@ -54,12 +54,9 @@ class EffectViewModelTest {
         viewModel.addEffect("Physical Defense", 2, 1) // Expire in 1 round
         viewModel.addEffect("Initiative", -2, 2)       // Expire in 2 rounds
 
-        assertEquals(1, viewModel.currentRound.value)
-
         // Finish round 1
         val expiredRound1 = viewModel.finishRound()
         assertEquals(1, expiredRound1) // 1 expired (Physical Defense)
-        assertEquals(2, viewModel.currentRound.value)
         assertEquals(1, viewModel.effects.value.size)
         assertEquals("Initiative", viewModel.effects.value[0].target)
         assertEquals(1, viewModel.effects.value[0].roundsRemaining)
@@ -67,7 +64,6 @@ class EffectViewModelTest {
         // Finish round 2
         val expiredRound2 = viewModel.finishRound()
         assertEquals(1, expiredRound2) // 1 expired (Initiative)
-        assertEquals(3, viewModel.currentRound.value)
         assertEquals(0, viewModel.effects.value.size)
         assertTrue(viewModel.aggregatedEffects.value.isEmpty())
     }
@@ -83,18 +79,78 @@ class EffectViewModelTest {
     }
 
     @Test
-    fun `test resetAll clears everything and resets round counter`() {
+    fun `test resetAll clears everything`() {
         viewModel.addEffect("Physical Defense", 2, 3)
         viewModel.addEffect("Initiative", -1, 4)
-        viewModel.finishRound() // Round is now 2
+        viewModel.addCondition("Harried")
+        viewModel.finishRound()
 
-        assertEquals(2, viewModel.currentRound.value)
         assertEquals(2, viewModel.effects.value.size)
+        assertEquals(1, viewModel.conditions.value.size)
 
         viewModel.resetAll()
 
-        assertEquals(1, viewModel.currentRound.value)
         assertTrue(viewModel.effects.value.isEmpty())
+        assertTrue(viewModel.conditions.value.isEmpty())
         assertTrue(viewModel.aggregatedEffects.value.isEmpty())
+    }
+
+    @Test
+    fun `test Harried stack 1 is -2 and stack 2 is -3`() {
+        viewModel.addCondition("Harried")
+        assertEquals(1, viewModel.conditions.value.size)
+        assertEquals(1, viewModel.conditions.value[0].stacks)
+
+        // Stack 1: -2 All action tests, -2 Physical Defense, -2 Mystic Defense
+        var aggregated = viewModel.aggregatedEffects.value
+        assertEquals(-2, aggregated.find { it.target == "All action tests" }?.totalAmount)
+        assertEquals(-2, aggregated.find { it.target == "Physical Defense" }?.totalAmount)
+
+        // Increment stack to 2 -> penalty becomes -(1 + 2) = -3
+        viewModel.addCondition("Harried")
+        assertEquals(2, viewModel.conditions.value[0].stacks)
+
+        aggregated = viewModel.aggregatedEffects.value
+        assertEquals(-3, aggregated.find { it.target == "All action tests" }?.totalAmount)
+        assertEquals(-3, aggregated.find { it.target == "Physical Defense" }?.totalAmount)
+    }
+
+    @Test
+    fun `test All action tests is displayed cleanly and factors into specific test totals`() {
+        viewModel.addCondition("Wound") // 1 wound -> -1 All action tests
+        viewModel.addEffect("Spellcasting Step", 3, 2) // +3 to Spellcasting Step
+
+        val aggregated = viewModel.aggregatedEffects.value
+
+        val allTests = aggregated.find { it.target == "All action tests" }
+        val spellcasting = aggregated.find { it.target == "Spellcasting Step" }
+
+        assertEquals(-1, allTests?.totalAmount)
+        // Spellcasting total = +3 (specific) + -1 (All action tests) = +2
+        assertEquals(2, spellcasting?.totalAmount)
+    }
+
+    @Test
+    fun `test removeCondition removes specific condition`() {
+        viewModel.addCondition("Harried")
+        val conditionId = viewModel.conditions.value[0].id
+
+        viewModel.removeCondition(conditionId)
+        assertTrue(viewModel.conditions.value.isEmpty())
+    }
+
+    @Test
+    fun `test finishRound does not affect conditions`() {
+        viewModel.addCondition("Harried")
+        viewModel.addEffect("Initiative", -1, 1)
+
+        assertEquals(1, viewModel.conditions.value.size)
+
+        viewModel.finishRound()
+
+        // Effect expired and removed, but condition remains
+        assertTrue(viewModel.effects.value.isEmpty())
+        assertEquals(1, viewModel.conditions.value.size)
+        assertEquals("Harried", viewModel.conditions.value[0].name)
     }
 }

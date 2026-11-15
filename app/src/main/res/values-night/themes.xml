@@ -1,7 +1,25 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.EarthdawnEffectTracker" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+<resources>
+    <style name="Theme.EarthdawnEffectTracker" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/ed_blood_amber</item>
+        <item name="colorOnPrimary">@color/ed_light_linen</item>
+        <item name="colorPrimaryContainer">@color/ed_crimson_container_dark</item>
+        <item name="colorOnPrimaryContainer">@color/ed_bone_parchment</item>
+
+        <item name="colorSecondary">@color/ed_antique_gold</item>
+        <item name="colorOnSecondary">@color/ed_obsidian_slate</item>
+        <item name="colorSecondaryContainer">@color/ed_gold_container_dark</item>
+        <item name="colorOnSecondaryContainer">@color/ed_bone_parchment</item>
+
+        <item name="colorTertiary">@color/ed_karma_dark</item>
+
+        <item name="android:colorBackground">@color/ed_obsidian_slate</item>
+        <item name="colorOnBackground">@color/ed_bone_parchment</item>
+        <item name="colorSurface">@color/ed_obsidian_slate</item>
+        <item name="colorOnSurface">@color/ed_bone_parchment</item>
+        <item name="colorSurfaceVariant">@color/ed_kaer_stone</item>
+        <item name="colorOnSurfaceVariant">@color/ed_ash_dust</item>
+        <item name="colorOutline">@color/ed_forged_iron</item>
+        <item name="colorOutlineVariant">@color/ed_dark_iron</item>
+        <item name="colorError">@color/ed_wound_dark</item>
     </style>
 </resources>

@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">Earthdawn Effect Tracker</string>
     <string name="action_reset">Reset</string>
-    <string name="action_add_effect">Add Effect</string>
-    <string name="action_finish_round">Finish Round</string>
+    <string name="action_add_effect">Effect</string>
+    <string name="action_finish_round">End Round</string>
     <string name="aggregated_totals_header">Totals</string>
     <string name="active_effects_header">Active Effects</string>
-    <string name="current_round_fmt">Round %1$d</string>
     <string name="no_active_effects">No active effects. Tap \'\+\' to add an effect.</string>
     <string name="no_aggregated_totals">No totals to display.</string>
     <string name="dialog_add_effect_title">Add New Effect</string>
@@ -17,8 +16,8 @@
     <string name="rounds_hint">e.g. 3</string>
     <string name="button_add">Add</string>
     <string name="button_cancel">Cancel</string>
-    <string name="reset_confirm_title">Reset All Effects?</string>
-    <string name="reset_confirm_msg">This will delete all active effects and reset the round counter to 1.</string>
+    <string name="reset_confirm_title">Reset All Effects &amp; Conditions?</string>
+    <string name="reset_confirm_msg">This will delete all active effects and conditions.</string>
     <string name="reset_confirm_yes">Reset</string>
     <string name="reset_confirm_no">Cancel</string>
     <string name="rounds_fmt">%1$d rounds remaining</string>
@@ -26,7 +25,19 @@
     <string name="effects_expired_msg">%1$d effect(s) expired!</string>
     <string name="no_effects_expired_msg">Advanced to next round. No effects expired.</string>
     <string name="invalid_input_error">Please enter a valid target, non-zero amount, and at least 1 round.</string>
+    <string name="invalid_condition_error">Please select or enter a valid condition name.</string>
     <string name="delete_effect">Delete effect</string>
+    <string name="delete_condition">Delete condition</string>
+    <string name="conditions_header">Conditions</string>
+    <string name="active_conditions_header">Active Conditions</string>
+    <string name="condition_hint">Select condition or type custom</string>
+    <string name="action_add_condition">Condition</string>
+    <string name="dialog_add_condition_title">Add Condition</string>
+    <string name="preset_conditions_label">Select Preset Condition</string>
+    <string name="no_active_conditions">No active conditions.</string>
+    <string name="condition_badge_label">Condition</string>
+    <string name="decrease_stacks">Decrease stacks</string>
+    <string name="increase_stacks">Increase stacks</string>
 
     <plurals name="effects_active_count">
         <item quantity="one">%1$d effect active</item>

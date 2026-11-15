@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Light Palette: Barsaivian Tome -->
+    <color name="ed_aged_parchment">#F4EFE6</color>
+    <color name="ed_warm_vellum">#EAE1D0</color>
+    <color name="ed_light_linen">#FAF7F2</color>
+    <color name="ed_deep_charcoal_ink">#231F20</color>
+    <color name="ed_weathered_umber">#5C5346</color>
+    <color name="ed_barsaivian_crimson">#7A1C1C</color>
+    <color name="ed_deep_garnet">#591212</color>
+    <color name="ed_crimson_container_light">#F5DADA</color>
+    <color name="ed_burnished_bronze">#B8860B</color>
+    <color name="ed_bronze_container_light">#F7E8C3</color>
+    <color name="ed_sanded_stone">#C9BCA6</color>
+    <color name="ed_weathered_stone">#8C7A6B</color>
 
-    <color name="positive_green">#2E7D32</color>
+    <!-- Dark Palette: Kaer & Astral Night -->
+    <color name="ed_obsidian_slate">#161412</color>
+    <color name="ed_kaer_stone">#211D1A</color>
+    <color name="ed_charred_oak">#2C2622</color>
+    <color name="ed_bone_parchment">#EDE6D6</color>
+    <color name="ed_ash_dust">#A39887</color>
+    <color name="ed_blood_amber">#B83227</color>
+    <color name="ed_crimson_container_dark">#521512</color>
+    <color name="ed_antique_gold">#D4AF37</color>
+    <color name="ed_gold_container_dark">#47370A</color>
+    <color name="ed_dark_iron">#3D352E</color>
+    <color name="ed_forged_iron">#63564A</color>
+
+    <!-- Mechanical Semantics (Light) -->
+    <color name="ed_karma_light">#1F6E7A</color>
+    <color name="ed_horror_light">#5A2D6E</color>
+    <color name="ed_recovery_light">#2E6B3E</color>
+    <color name="ed_wound_light">#A61C1C</color>
+    <color name="ed_strain_light">#C26D18</color>
+
+    <!-- Mechanical Semantics (Dark) -->
+    <color name="ed_karma_dark">#3898A6</color>
+    <color name="ed_horror_dark">#8A4FA3</color>
+    <color name="ed_recovery_dark">#47995C</color>
+    <color name="ed_wound_dark">#E04848</color>
+    <color name="ed_strain_dark">#E68A2E</color>
+
+    <!-- UI Badge Colors -->
+    <color name="positive_green">@color/ed_recovery_light</color>
     <color name="positive_green_container">#E8F5E9</color>
-    <color name="negative_red">#C62828</color>
-    <color name="negative_red_container">#FFEBEE</color>
-    <color name="neutral_gray">#424242</color>
-    <color name="neutral_gray_container">#F5F5F5</color>
-
-    <color name="accent_blue">#1976D2</color>
+    <color name="negative_red">@color/ed_wound_light</color>
+    <color name="negative_red_container">#F5DADA</color>
+    <color name="neutral_gray">@color/ed_weathered_stone</color>
+    <color name="neutral_gray_container">#EAE1D0</color>
 </resources>

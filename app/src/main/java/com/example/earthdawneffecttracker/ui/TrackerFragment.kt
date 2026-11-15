@@ -15,8 +15,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.earthdawneffecttracker.R
 import com.example.earthdawneffecttracker.databinding.FragmentTrackerBinding
+import com.example.earthdawneffecttracker.ui.adapter.ActiveConditionsAdapter
 import com.example.earthdawneffecttracker.ui.adapter.ActiveEffectsAdapter
 import com.example.earthdawneffecttracker.ui.adapter.AggregatedEffectsAdapter
+import com.example.earthdawneffecttracker.ui.dialog.AddConditionDialogFragment
 import com.example.earthdawneffecttracker.ui.dialog.AddEffectDialogFragment
 import com.example.earthdawneffecttracker.viewmodel.EffectViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -33,6 +35,7 @@ class TrackerFragment : Fragment() {
 
     private lateinit var aggregatedAdapter: AggregatedEffectsAdapter
     private lateinit var activeAdapter: ActiveEffectsAdapter
+    private lateinit var conditionsAdapter: ActiveConditionsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,6 +60,11 @@ class TrackerFragment : Fragment() {
             object : MenuProvider {
                 override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                     menuInflater.inflate(R.menu.menu_main, menu)
+                    val resetItem = menu.findItem(R.id.action_reset)
+                    val actionView = resetItem?.actionView
+                    actionView?.findViewById<View>(R.id.button_action_reset)?.setOnClickListener {
+                        confirmReset()
+                    }
                 }
 
                 override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -75,6 +83,19 @@ class TrackerFragment : Fragment() {
     }
 
     private fun setupRecyclerViews() {
+        conditionsAdapter = ActiveConditionsAdapter(
+            onStackChange = { condition, delta ->
+                viewModel.updateConditionStacks(condition.id, delta)
+            },
+            onDeleteClick = { condition ->
+                viewModel.removeCondition(condition.id)
+            }
+        )
+        binding.recyclerConditions.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = conditionsAdapter
+        }
+
         aggregatedAdapter = AggregatedEffectsAdapter()
         binding.recyclerAggregated.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -91,6 +112,10 @@ class TrackerFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
+        binding.buttonAddCondition.setOnClickListener {
+            showAddConditionDialog()
+        }
+
         binding.buttonAddEffect.setOnClickListener {
             showAddEffectDialog()
         }
@@ -107,6 +132,21 @@ class TrackerFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.conditions.collectLatest { list ->
+                conditionsAdapter.submitList(list)
+                if (list.isEmpty()) {
+                    binding.textConditionsHeader.visibility = View.GONE
+                    binding.textEmptyConditions.visibility = View.GONE
+                    binding.recyclerConditions.visibility = View.GONE
+                } else {
+                    binding.textConditionsHeader.visibility = View.VISIBLE
+                    binding.textEmptyConditions.visibility = View.GONE
+                    binding.recyclerConditions.visibility = View.VISIBLE
+                }
+            }
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.aggregatedEffects.collectLatest { list ->
                 aggregatedAdapter.submitList(list)
@@ -134,6 +174,13 @@ class TrackerFragment : Fragment() {
         }
     }
 
+    private fun showAddConditionDialog() {
+        AddConditionDialogFragment.newInstance().show(
+            childFragmentManager,
+            AddConditionDialogFragment.TAG,
+        )
+    }
+
     private fun showAddEffectDialog() {
         AddEffectDialogFragment.newInstance().show(
             childFragmentManager,
@@ -147,7 +194,7 @@ class TrackerFragment : Fragment() {
             .setMessage(R.string.reset_confirm_msg)
             .setPositiveButton(R.string.reset_confirm_yes) { _, _ ->
                 viewModel.resetAll()
-                Snackbar.make(binding.root, "All effects reset", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "All effects and conditions reset", Snackbar.LENGTH_SHORT).show()
             }
             .setNegativeButton(R.string.reset_confirm_no, null)
             .show()
