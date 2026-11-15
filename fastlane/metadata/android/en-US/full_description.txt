@@ -1,0 +1,10 @@
+Earthdawn Effect Tracker is a clean, modern tabletop RPG assistant designed for Earthdawn (4th Edition).
+
+Key Features:
+• Timed Effects: Track temporary attribute step modifiers, defense buffs, or armor penalties with round durations.
+• Status Conditions: Built-in support for official Earthdawn combat conditions (Harried, Knocked Down, Wounds, Blindsided, Surprised, Darkness, Entangled, Grappled, Overwhelmed).
+• Stacking & Severity: Adjust condition stack counts on the fly (e.g. Wounds or Harried stacks).
+• Automatic Mechanical Translation: Status conditions automatically apply their exact rulebook penalties to defenses, movement, and general test steps.
+• Unified "All Action Tests": General test penalties are aggregated into a single clean line instead of cluttering your screen with every individual step attribute.
+• One-Tap Round Progression: Advance to the next round to decrement remaining durations and automatically expire finished effects.
+• FOSS & Offline: 100% free and open-source under the GPL-3.0 license, with zero ads, tracking, or internet requirements.

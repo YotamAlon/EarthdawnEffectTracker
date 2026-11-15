@@ -1,0 +1,1 @@
+Track timed effects, status conditions, and step totals for Earthdawn 4E.

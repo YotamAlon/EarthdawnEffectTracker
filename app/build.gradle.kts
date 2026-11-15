@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.earthdawneffecttracker"
+    namespace = "io.github.yotamalon.earthdawneffecttracker"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.example.earthdawneffecttracker"
+        applicationId = "io.github.yotamalon.earthdawneffecttracker"
         minSdk = 24
         targetSdk = 37
         versionCode = 1
